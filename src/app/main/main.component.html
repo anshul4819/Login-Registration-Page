@@ -1,0 +1,42 @@
+<app-navbar></app-navbar><br>
+<img src="../../assets/images/addverb1.png" width="170" height="50" style="padding-left: 15px;"> 
+
+<div style="text-align:center">
+            
+            <h1> <b>New User Login</b> </h1>
+            <br><br>
+    <form #Register="ngForm" style="padding-left: 530px;padding-right: 530px;">
+
+
+        <input type="email" required #name="ngModel" class="form-control" name="email" placeholder="Username" ngModel>
+        <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+            Username is required!
+        </div>        
+        <br> <br>
+
+        <input #x minlength="1" required id="password" #pass="ngModel" name="password" class="form-control" type="password" placeholder="Password" ngModel>
+        <div *ngIf = "pass.touched && !pass.hasError('required') && pass.hasError('minlength')" class = "alert alert-danger">
+            Password should contain 12 characters!
+        </div><button (click)="x.type=x.type=='password'?'text':'password'">Show pass</button>
+        <br> <br>
+        <input type="password" required #conpass="ngModel" class="form-control" name="confrmpass" placeholder="Confirm Password" ngModel>
+        <div *ngIf = "conpass.touched && !conpass.hasError('required') && pass.value!=conpass.value" class = "alert alert-danger">
+            Password mismatch!
+        </div>
+
+        <br><br>
+        <label> <h4><b>Role</b></h4> </label>
+        <br>
+        <mat-form-field appearance="fill" >
+            <select matNativeControl>
+              <option  value="Admin">Admin</option>
+              <option  value="Operator">Operator</option>
+              <option  value="Site Admin">Site Admin</option>
+            </select>
+        </mat-form-field>
+
+        <br><br>
+        <button [disabled]="Register.invalid" type="submit" class="button" (click)="Submit(Register)" routerLink="/user-list"> Submit </button>
+    </form>
+    
+</div>

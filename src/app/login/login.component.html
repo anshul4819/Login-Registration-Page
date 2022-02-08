@@ -1,0 +1,25 @@
+<div style="text-align:center; padding-left: 450px; padding-right: 450px;"><br><br>
+    <img src="../../assets/images/addverb1.png" width="270" height="80"> 
+    <br><br><br><br>
+            <h1> Login to get access </h1>
+            <br>
+           
+    <form #Register="ngForm" >
+
+        <input type="email" required #name="ngModel" class="form-control" name="email" placeholder="Username" ngModel>
+        <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+            Username is required!
+        </div>        
+        <br> <br>
+
+        <input minlength="1" required id="password" #x #pass="ngModel" name="password" class="form-control"  placeholder="Password" ngModel>
+        <div *ngIf = "pass.touched && !pass.hasError('required') && pass.hasError('minlength')" class = "alert alert-danger">
+            Password should contain 12 characters!
+        </div>
+        <br>
+        <button (click)="x.type=x.type=='password'?'text':'password'">Show pass</button>
+        <br><br>
+        <button [disabled]="Register.invalid" type="submit" class="button" (click)="Submit(Register)" routerLink="/add-user"> Submit </button>
+    </form>
+    
+</div>
